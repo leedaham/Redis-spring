@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +39,7 @@ public class SearchWordsService {
             }
             words.add(0, searchWord);
         }
-        stringValueOperations.set(userId, String.valueOf(words));
+        stringValueOperations.set(userId, String.valueOf(words), 1, TimeUnit.HOURS);
 
         return new SearchWordList(userId, stringValueOperations.get(userId));
     }
